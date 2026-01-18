@@ -12,11 +12,56 @@ const navLinks = [
     { name: "TECH", href: "#tech-stack" },
     { name: "CONTACT", href: "#contact" },
 ];
-
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
+
+    const navLinks = [
+        { name: "SERVICES", href: "#services" },
+        { name: "WORK", href: "#work" },
+        { name: "PROCESS", href: "#process" },
+        { name: "TECH", href: "#tech" },
+        { name: "CONTACT", href: "#contact" },
+    ];
+
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const targetId = href.replace("#", "");
+        const elem = document.getElementById(targetId);
+
+        if (elem) {
+            const navbarHeight = 80;
+            const elementPosition = elem.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight;
+            const startPosition = window.pageYOffset;
+            const distance = offsetPosition - startPosition;
+            const duration = 1000; // 1 second explicitly
+            let start: number | null = null;
+
+            function animation(currentTime: number) {
+                if (start === null) start = currentTime;
+                const timeElapsed = currentTime - start;
+                const progress = Math.min(timeElapsed / duration, 1);
+
+                // Ease-in-out quintic function for "butter smooth" feel
+                const ease = progress < 0.5
+                    ? 16 * progress * progress * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 5) / 2;
+
+                window.scrollTo(0, startPosition + distance * ease);
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            requestAnimationFrame(animation);
+
+            // Close mobile menu if open
+            setIsMobileMenuOpen(false);
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -58,7 +103,7 @@ export default function Navbar() {
 
                 <div className="max-w-7xl mx-auto px-6 h-full flex justify-between items-center transition-all duration-400 ease-in-out">
                     {/* Logo */}
-                    <Link href="/" className="relative group z-50 flex items-center">
+                    <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="relative group z-50 flex items-center">
                         <span
                             className={cn(
                                 "font-orbitron font-bold text-white tracking-wider group-hover:text-vapor-cyan transition-all duration-400 ease-in-out",
@@ -78,6 +123,7 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
+                                onClick={(e) => handleLinkClick(e, link.href)}
                                 className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors group"
                             >
                                 {link.name}
@@ -88,7 +134,10 @@ export default function Navbar() {
 
                     {/* CTA Button */}
                     <div className="hidden md:block">
-                        <Link href="#contact">
+                        <Link
+                            href="#contact"
+                            onClick={(e) => handleLinkClick(e, "#contact")}
+                        >
                             <button
                                 className={cn(
                                     "rounded-full bg-gradient-to-r from-vapor-cyan to-vapor-blue text-black font-bold tracking-wider hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] hover:scale-105 transition-all duration-400 ease-in-out",
@@ -129,17 +178,21 @@ export default function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
+                                onClick={(e) => handleLinkClick(e, link.href)}
                                 className="text-2xl font-orbitron font-bold text-white hover:text-vapor-cyan transition-colors"
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>
-                            <button className="mt-4 px-8 py-3 rounded-full bg-vapor-cyan text-black font-bold tracking-wider">
-                                LET'S TALK
-                            </button>
-                        </Link>
+                        <button
+                            onClick={(e) => {
+                                setIsMobileMenuOpen(false);
+                                handleLinkClick(e as any, "#contact");
+                            }}
+                            className="mt-4 px-8 py-3 rounded-full bg-vapor-cyan text-black font-bold tracking-wider"
+                        >
+                            LET'S TALK
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -76,7 +76,7 @@ export default function Portfolio() {
     });
 
     return (
-        <section ref={containerRef} id="portfolio" className="py-32 px-6 bg-vapor-dark relative z-10 overflow-hidden">
+        <section ref={containerRef} id="work" className="py-32 px-6 bg-vapor-dark relative z-10 overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">

@@ -18,9 +18,11 @@ const techs = [
 
 export default function TechStack() {
     return (
-        <section id="tech" className="py-24 px-6 bg-black relative z-10 w-full overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-vapor-blue/10 blur-[100px] rounded-full" />
+        <section id="tech" className="py-20 bg-black relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6">
+                {/* Background Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-vapor-blue/10 blur-[100px] rounded-full" />
+            </div>
 
             <div className="max-w-7xl mx-auto text-center relative z-20">
                 <motion.h2

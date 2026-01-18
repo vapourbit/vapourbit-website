@@ -1,7 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import emailjs from "@emailjs/browser";
+import * as emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Loader2 } from "lucide-react";
 
@@ -33,6 +33,7 @@ export default function Contact() {
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 console.log("Form Data:", data);
             } else {
+                // @ts-ignore - Handle potential TS issue with emailjs types
                 await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current!, PUBLIC_KEY);
             }
             setStatus("success");
@@ -47,6 +48,21 @@ export default function Contact() {
             {/* Background Gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#050508] via-[#0a0a0f] to-black" />
 
+            {/* 2. Enhanced Breathing Noise Overlay */}
+            <div className="absolute inset-0 z-0 opacity-[0.25] pointer-events-none mix-blend-screen overflow-hidden">
+                <div
+                    className="absolute inset-0 animate-pulse"
+                    style={{
+                        backgroundImage: "url('/noise.png')",
+                        backgroundRepeat: "repeat",
+                        backgroundSize: "150px 150px"
+                    }}
+                />
+            </div>
+
+            {/* Vignette Overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] pointer-events-none z-0" />
+
             <div className="max-w-7xl mx-auto px-6 relative z-10 flex flex-col lg:flex-row gap-20">
 
                 {/* Text Side */}
@@ -55,9 +71,10 @@ export default function Contact() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-orbitron text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
+                        className="font-orbitron text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8 leading-tight break-words pr-4"
                     >
-                        READY TO BUILD SOMETHING <span className="text-transparent bg-clip-text bg-gradient-to-r from-vapor-cyan to-vapor-blue">EXTRAORDINARY?</span>
+                        READY TO BUILD SOMETHING <br className="hidden md:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-vapor-cyan to-vapor-blue py-2 whitespace-nowrap">EXTRAORDINARY?</span>
                     </motion.h2>
 
                     <p className="text-gray-400 text-lg mb-12 max-w-lg">

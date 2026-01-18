@@ -19,6 +19,7 @@ export default function Hero() {
 
     return (
         <section
+            id="home"
             ref={containerRef}
             className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#000000]"
         >
@@ -71,12 +72,12 @@ export default function Hero() {
                     transition={{ delay: 1.0, duration: 0.8 }}
                     className="flex flex-col md:flex-row gap-6"
                 >
-                    <Link href="#contact">
+                    <Link href="#services" className="scroll-smooth-link">
                         <button className="px-10 py-4 border-2 border-white text-white font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105">
                             Discover More
                         </button>
                     </Link>
-                    <Link href="#portfolio">
+                    <Link href="#work" className="scroll-smooth-link">
                         <button className="px-10 py-4 bg-transparent text-gray-300 font-bold uppercase tracking-wider rounded-full hover:text-vapor-cyan transition-colors duration-300 flex items-center gap-2 group">
                             View Our Work
                             <span className="block h-[1px] w-8 bg-gray-300 group-hover:w-12 group-hover:bg-vapor-cyan transition-all" />

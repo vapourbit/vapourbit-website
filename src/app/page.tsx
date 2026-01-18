@@ -9,7 +9,7 @@ import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
 import TechStack from "@/components/sections/TechStack";
 import Process from "@/components/sections/Process";
-import CTA from "@/components/sections/CTA";
+import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -29,11 +29,11 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsMarquee />
-      <Services />
       <Portfolio />
+      <Services />
       <TechStack />
       <Process />
-      <CTA />
+      <Contact />
       <Footer />
     </main>
   );
