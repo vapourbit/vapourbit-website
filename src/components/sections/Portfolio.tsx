@@ -51,7 +51,7 @@ const projects = [
     {
         id: 5,
         title: "AI WITH YOU",
-        category: "DIRECTORY",
+        category: "AI TOOL",
         description: "Curated directory of the world's best AI tools, streamlining the discovery of cutting-edge artificial intelligence solutions.",
         tech: ["Next.js", "Algolia", "Vercel"],
         image: "https://images.unsplash.com/photo-1555529733-0e670560f7e1?q=80&w=2564&auto=format&fit=crop", // Tech/Matrix
@@ -69,9 +69,9 @@ export default function Portfolio() {
     const filteredProjects = projects.filter((project) => {
         if (activeFilter === "All") return true;
         if (activeFilter === "Web Apps") return ["WEB APP", "DIRECTORY"].includes(project.category);
-        if (activeFilter === "AI Tools") return ["AI TOOL", "PLATFORM"].includes(project.category);
+        if (activeFilter === "AI Tools") return ["AI TOOL"].includes(project.category);
         if (activeFilter === "Brand Site") return project.category === "BRAND SITE";
-        if (activeFilter === "Platforms") return ["PLATFORM", "DIRECTORY"].includes(project.category);
+        if (activeFilter === "Platforms") return ["PLATFORM"].includes(project.category);
         return true;
     });
 

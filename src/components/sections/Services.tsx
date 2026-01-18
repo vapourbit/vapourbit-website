@@ -1,87 +1,117 @@
 "use client";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Code2, Palette, Smartphone, Zap } from "lucide-react";
+import { Code, Palette, Layers, Smartphone, TrendingUp, Network } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const services = [
     {
-        icon: <Code2 size={40} />,
-        title: "Web Development",
-        desc: "High-performance, scalable web applications built with modern stacks like React, Next.js, and Node.js.",
+        title: "Custom Web Development",
+        description: "Building scalable, high-performance web applications with cutting-edge technologies.",
+        icon: <Code className="w-8 h-8 text-vapor-cyan" />,
+        colSpan: "md:col-span-2",
+        bgGradient: "from-vapor-blue/10 to-transparent",
     },
     {
-        icon: <Palette size={40} />,
         title: "UI/UX Design",
-        desc: "User-centric design that creates seamless and engaging brand experiences across all digital touchpoints.",
+        description: "Crafting intuitive, beautiful interfaces that users love and convert.",
+        icon: <Palette className="w-8 h-8 text-[#ff006e]" />,
+        colSpan: "md:col-span-1",
+        bgGradient: "from-[#ff006e]/10 to-transparent",
     },
     {
-        icon: <Smartphone size={40} />,
+        title: "Full-Stack Solutions",
+        description: "End-to-end development from database to frontend with seamless integration.",
+        icon: <Layers className="w-8 h-8 text-[#8b5cf6]" />,
+        colSpan: "md:col-span-1",
+        bgGradient: "from-[#8b5cf6]/10 to-transparent",
+    },
+    {
         title: "Mobile Apps",
-        desc: "Native and cross-platform mobile solutions for iOS and Android that deliver native performance.",
+        description: "Responsive, mobile-first applications that work perfectly on any device.",
+        icon: <Smartphone className="w-8 h-8 text-vapor-cyan" />,
+        colSpan: "md:col-span-1",
+        bgGradient: "from-vapor-cyan/10 to-transparent",
     },
     {
-        icon: <Zap size={40} />,
         title: "Digital Strategy",
-        desc: "Data-driven insights to guide your digital transformation journey and ensure market fit.",
+        description: "Strategic planning to amplify your digital presence and drive results.",
+        icon: <TrendingUp className="w-8 h-8 text-green-400" />,
+        colSpan: "md:col-span-1",
+        bgGradient: "from-green-400/10 to-transparent",
+    },
+    {
+        title: "API Integration",
+        description: "Seamless third-party integrations and custom API development.",
+        icon: <Network className="w-8 h-8 text-orange-400" />,
+        colSpan: "md:col-span-2", // Make this span 2 columns to balance the grid if needed, or keeping it 1 for asymmetrical feel. Let's try 2 for balance at bottom.
+        bgGradient: "from-orange-400/10 to-transparent",
     },
 ];
 
 export default function Services() {
-    return (
-        <section id="services" className="py-32 px-6 relative z-10 w-full max-w-7xl mx-auto">
-            <div className="mb-20">
-                <motion.h2
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="font-orbitron text-5xl md:text-7xl font-bold text-white mb-6"
-                >
-                    We craft digital <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-vapor-blue to-vapor-cyan">
-                        solutions that drive growth.
-                    </span>
-                </motion.h2>
-                <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: 100 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="h-1 bg-vapor-cyan"
-                />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {services.map((service, index) => (
-                    <ServiceCard key={index} service={service} index={index} />
-                ))}
-            </div>
-        </section>
-    );
-}
-
-function ServiceCard({ service, index }: { service: any; index: number }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            whileHover={{ y: -10, scale: 1.02 }}
-            className="group p-8 md:p-12 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-vapor-cyan/50 hover:bg-white/10 transition-all duration-300 cursor-pointer"
-        >
-            <div className="mb-6 text-vapor-cyan group-hover:text-white group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                {service.icon}
+        <section id="services" className="relative py-32 bg-[#050508] text-white">
+            <div className="max-w-7xl mx-auto px-6">
+
+                {/* Header */}
+                <div className="mb-20">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="font-orbitron text-5xl md:text-7xl font-bold mb-6"
+                    >
+                        WHAT WE <span className="text-transparent bg-clip-text bg-gradient-to-r from-vapor-cyan to-vapor-blue">CREATE</span>
+                    </motion.h2>
+                    <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100px" }}
+                        viewport={{ once: true }}
+                        className="h-1 bg-vapor-cyan"
+                    />
+                </div>
+
+                {/* Bento Grid */}
+                <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            whileHover={{ y: -10, scale: 1.02 }}
+                            className={cn(
+                                "group relative overflow-hidden rounded-3xl p-8 border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,0,0,0.5)]",
+                                service.colSpan
+                            )}
+                        >
+                            {/* Hover Gradient Background */}
+                            <div className={cn(
+                                "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                                service.bgGradient
+                            )} />
+
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col h-full justify-between gap-6">
+                                <div className="p-4 bg-white/5 rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300">
+                                    {service.icon}
+                                </div>
+
+                                <div>
+                                    <h3 className="font-orbitron text-2xl font-bold mb-3">{service.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed font-light group-hover:text-gray-200 transition-colors">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
-            <h3 className="font-orbitron text-2xl font-bold text-white mb-4 group-hover:text-vapor-cyan transition-colors">
-                {service.title}
-            </h3>
-            <p className="text-gray-400 leading-relaxed group-hover:text-gray-300">
-                {service.desc}
-            </p>
-        </motion.div>
+        </section>
     );
 }
