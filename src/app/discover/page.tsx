@@ -12,10 +12,11 @@ const kocoaImagesRaw = [
 ];
 
 const studentAppImagesRaw = [
-    "/images/projects/student_app/notes.jpg",
+
     "/images/projects/student_app/analytics.jpg",
     "/images/projects/student_app/dashboard.jpg",
     "/images/projects/student_app/login.jpg",
+    "/images/projects/student_app/attendance.jpg",
 ];
 
 // Duplicate the array to create a seamless loop
