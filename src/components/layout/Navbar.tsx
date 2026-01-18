@@ -34,7 +34,7 @@ export default function Navbar() {
         >
             <Link href="/" className="relative group">
                 <span className="font-orbitron font-bold text-2xl text-white tracking-wider group-hover:text-vapor-cyan transition-colors duration-300">
-                    VAPORBIT
+                    VAPOURBIT
                 </span>
             </Link>
 

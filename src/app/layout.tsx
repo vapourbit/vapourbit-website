@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
 
 export const metadata: Metadata = {
-  title: "Vaporbit | Future of Digital",
+  title: "Vapourbit | Future of Digital",
   description: "Award-winning software solutions and web development.",
 };
 

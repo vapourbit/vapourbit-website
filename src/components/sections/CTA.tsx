@@ -32,7 +32,7 @@ export default function CTA() {
             </motion.p>
 
             <div className="relative z-20">
-                <Link href="mailto:hello@vaporbit.com">
+                <Link href="mailto:hello@vapourbit.com">
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
