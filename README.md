@@ -4,12 +4,12 @@
 
 **Vapourbit** is a cutting-edge digital agency specializing in high-performance web applications, bespoke software solutions, and premium UI/UX design. This repository hosts our official website, a showcase of our technical prowess and design philosophy.
 
-## 🚀 Live Demo
-**[vapourbit-website.vercel.app](https://vapourbit-website.vercel.app)**
+## Live Demo
+**[vapourbit.com](https://vapourbit.com)**
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Premium Aesthetic**: A "Deep Blue & Cyan" dark mode design with glassmorphism, noise textures, and vibrant gradients.
 - **Advanced Animations**: Powered by **Framer Motion** and **GSAP**, featuring staggered reveals, parallax scrolling, and magnetic interactions.
@@ -21,19 +21,19 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Animations**: [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)
-- **Smooth Scroll**: [Lenis](https://lenisFile.com/)
+- **Smooth Scroll**: [Lenis](https://lenis.studio/freight/react-lenis)
 - **Icons**: [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
 - **Deployment**: [Vercel](https://vercel.com/)
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```bash
 vapourbit/
@@ -54,7 +54,7 @@ vapourbit/
 
 ---
 
-## ⚡ Getting Started
+## Getting Started
 
 1.  **Clone the repository:**
     ```bash
@@ -81,7 +81,7 @@ vapourbit/
 
 ---
 
-## 📦 Building for Production
+## Building for Production
 
 To create an optimized production build:
 
@@ -97,21 +97,21 @@ npm start
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
 The project is optimized for deployment on **Vercel**.
 
 1.  Connect your GitHub repository to Vercel.
 2.  Ensure the **Framework Preset** is set to **Next.js**.
-3.  Deploy! Vercel will automatically detect the build settings.
+3.  Add your custom domain `vapourbit.com` in the Vercel dashboard settings.
 
 ---
 
-## 📄 License
+## License
 
 © 2026 **Vapourbit**. All rights reserved.
 This project is proprietary and confidential.
 
 ---
 
-Built with ❤️ by [The Vapourbit Team](mailto:hello@vapourbit.com).
+Built by [The Vapourbit Team](mailto:hello@vapourbit.com).
