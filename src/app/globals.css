@@ -1,4 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/nasalization-free');
 @import "tailwindcss";
+@tailwind base;
 
 @theme {
   --color-vapor-blue: #1a73e8;
@@ -6,6 +8,11 @@
   --color-vapor-dark: #0a0a0f;
   --font-orbitron: var(--font-orbitron);
   --font-inter: var(--font-inter);
+}
+
+/* Force override for instant testing */
+:root {
+  --font-orbitron: 'Nasalization', sans-serif;
 }
 
 :root {
