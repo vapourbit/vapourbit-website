@@ -72,7 +72,7 @@ export default function Hero() {
                     transition={{ delay: 1.0, duration: 0.8 }}
                     className="flex flex-col md:flex-row gap-6"
                 >
-                    <Link href="#services" className="scroll-smooth-link">
+                    <Link href="/discover">
                         <button className="px-10 py-4 border-2 border-white text-white font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-black transition-all duration-300 transform hover:scale-105">
                             Discover More
                         </button>

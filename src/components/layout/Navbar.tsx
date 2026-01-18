@@ -6,10 +6,10 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+    { name: "WORK", href: "#work" },
     { name: "SERVICES", href: "#services" },
-    { name: "WORK", href: "#portfolio" },
     { name: "PROCESS", href: "#process" },
-    { name: "TECH", href: "#tech-stack" },
+    { name: "TECH", href: "#tech" },
     { name: "CONTACT", href: "#contact" },
 ];
 export default function Navbar() {
@@ -18,8 +18,8 @@ export default function Navbar() {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     const navLinks = [
-        { name: "SERVICES", href: "#services" },
         { name: "WORK", href: "#work" },
+        { name: "SERVICES", href: "#services" },
         { name: "PROCESS", href: "#process" },
         { name: "TECH", href: "#tech" },
         { name: "CONTACT", href: "#contact" },
