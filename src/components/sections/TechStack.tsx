@@ -1,50 +1,114 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 import {
-    SiReact, SiNextdotjs, SiTypescript, SiTailwindcss,
-    SiFramer, SiGreensock, SiNodedotjs, SiPython
+    SiNextdotjs, SiReact, SiTypescript, SiJavascript, SiTailwindcss, SiHtml5, SiCss3,
+    SiFramer, SiGreensock, SiRedux, SiVuedotjs, SiSvelte,
+    SiNodedotjs, SiExpress, SiPython, SiFastify, SiGraphql,
+    SiMongodb, SiPostgresql, SiMysql, SiPrisma, SiSupabase, SiFirebase, SiRedis,
+    SiVercel, SiAmazonwebservices, SiGooglecloud, SiDocker, SiKubernetes, SiNetlify,
+    SiOpenai, SiGithub, SiGit, SiFigma, SiStripe, SiPostman, SiJest
 } from "react-icons/si";
+import { FaDatabase } from "react-icons/fa";
+import { VscAzure, VscVscode } from "react-icons/vsc";
+import { cn } from "@/lib/utils";
 
-const techs = [
-    { icon: SiReact, name: "React" },
-    { icon: SiNextdotjs, name: "Next.js" },
-    { icon: SiTypescript, name: "TypeScript" },
-    { icon: SiTailwindcss, name: "Tailwind" },
-    { icon: SiFramer, name: "Framer" },
-    { icon: SiGreensock, name: "GSAP" },
-    { icon: SiNodedotjs, name: "Node.js" },
-    { icon: SiPython, name: "Python" },
+const technologies = [
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "React", icon: SiReact },
+    { name: "TypeScript", icon: SiTypescript },
+    { name: "JavaScript", icon: SiJavascript },
+    { name: "Tailwind", icon: SiTailwindcss },
+    { name: "HTML5", icon: SiHtml5 },
+    { name: "CSS3", icon: SiCss3 },
+    { name: "Framer", icon: SiFramer },
+    { name: "GSAP", icon: SiGreensock },
+    { name: "Redux", icon: SiRedux },
+    { name: "Vue.js", icon: SiVuedotjs },
+    { name: "Svelte", icon: SiSvelte },
+    { name: "Node.js", icon: SiNodedotjs },
+    { name: "Express", icon: SiExpress },
+    { name: "Python", icon: SiPython },
+    { name: "Fastify", icon: SiFastify },
+    { name: "GraphQL", icon: SiGraphql },
+    { name: "REST API", icon: FaDatabase },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "PostgreSQL", icon: SiPostgresql },
+    { name: "MySQL", icon: SiMysql },
+    { name: "Prisma", icon: SiPrisma },
+    { name: "Supabase", icon: SiSupabase },
+    { name: "Firebase", icon: SiFirebase },
+    { name: "Redis", icon: SiRedis },
+    { name: "Vercel", icon: SiVercel },
+    { name: "AWS", icon: SiAmazonwebservices },
+    { name: "Google Cloud", icon: SiGooglecloud },
+    { name: "Azure", icon: VscAzure },
+    { name: "Docker", icon: SiDocker },
+    { name: "Kubernetes", icon: SiKubernetes },
+    { name: "Netlify", icon: SiNetlify },
+    { name: "OpenAI", icon: SiOpenai },
+    { name: "GitHub", icon: SiGithub },
+    { name: "Git", icon: SiGit },
+    { name: "VS Code", icon: VscVscode },
+    { name: "Figma", icon: SiFigma },
+    { name: "Stripe", icon: SiStripe },
+    { name: "Postman", icon: SiPostman },
+    { name: "Jest", icon: SiJest },
 ];
 
 export default function TechStack() {
     return (
-        <section id="tech" className="py-20 bg-black relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Background Glow */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-vapor-blue/10 blur-[100px] rounded-full" />
+        <section id="tech-stack" className="relative py-32 bg-[#0a0a0f] overflow-hidden">
+            {/* Background Noise */}
+            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
+                <div className="absolute inset-0 bg-[url('/noise.png')]" />
             </div>
 
-            <div className="max-w-7xl mx-auto text-center relative z-20">
-                <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    className="font-orbitron text-4xl font-bold text-white mb-16"
-                >
-                    POWERED BY MODERN TECHNOLOGY
-                </motion.h2>
+            <div className="relative z-10 container mx-auto px-6 mb-24 text-center">
+                <h2 className="font-orbitron font-bold text-4xl md:text-5xl tracking-widest text-white uppercase">
+                    Powered by Modern Technology
+                </h2>
+            </div>
 
-                <div className="flex flex-wrap justify-center gap-12 md:gap-20">
-                    {techs.map((Tech, i) => (
+            {/* Infinite Scroll Carousel */}
+            <div className="flex w-full overflow-hidden mask-gradient">
+                <div className="flex w-full whitespace-nowrap hover:[animation-play-state:paused]">
+                    {[...Array(2)].map((_, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: i * 0.08, type: "spring" }}
-                            whileHover={{ scale: 1.2, rotate: 5, color: "#00d4ff" }}
-                            className="text-gray-500 hover:text-vapor-cyan transition-colors duration-300 flex flex-col items-center gap-4 group"
+                            initial={{ x: 0 }}
+                            animate={{ x: "-100%" }}
+                            transition={{
+                                duration: 60,
+                                ease: "linear",
+                                repeat: Infinity
+                            }}
+                            className="flex items-start shrink-0"
                         >
-                            <Tech.icon size={50} />
-                            <span className="opacity-0 group-hover:opacity-100 transition-opacity text-sm font-bold tracking-widest">{Tech.name}</span>
+                            {technologies.map((tech, index) => {
+                                const Icon = tech.icon;
+                                return (
+                                    <div
+                                        key={index}
+                                        className="group relative flex flex-col items-center justify-start mx-8 md:mx-12 min-w-[80px] cursor-pointer"
+                                    >
+                                        <div className="relative p-2 transition-transform duration-300 transform group-hover:scale-125">
+                                            <Icon
+                                                size={48}
+                                                className="text-gray-600 transition-colors duration-300 group-hover:text-white"
+                                            />
+                                        </div>
+
+                                        {/* Name Label - Appears BELOW icon on hover (matches screenshot) */}
+                                        <span className={cn(
+                                            "absolute top-full mt-4 text-sm font-bold tracking-wider text-vapor-cyan opacity-0 transform translate-y-2 transition-all duration-300",
+                                            "group-hover:opacity-100 group-hover:translate-y-0"
+                                        )}>
+                                            {tech.name}
+                                        </span>
+                                    </div>
+                                );
+                            })}
                         </motion.div>
                     ))}
                 </div>

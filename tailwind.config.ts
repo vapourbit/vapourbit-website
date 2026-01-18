@@ -24,6 +24,15 @@ const config: Config = {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
             },
+            animation: {
+                scroll: "scroll 40s linear infinite",
+            },
+            keyframes: {
+                scroll: {
+                    "0%": { transform: "translateX(0)" },
+                    "100%": { transform: "translateX(-33.333333%)" },
+                },
+            },
         },
     },
     plugins: [],
