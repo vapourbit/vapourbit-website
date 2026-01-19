@@ -106,37 +106,43 @@ export default function Contact() {
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div className="space-y-2">
-                                <label className="text-sm text-gray-400 ml-1">Full Name *</label>
+                                <label htmlFor="name" className="text-sm text-gray-400 ml-1">Full Name *</label>
                                 <input
+                                    id="name"
                                     {...register("name", { required: true })}
                                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-vapor-cyan transition-colors"
                                     placeholder="John Doe"
+                                    aria-invalid={errors.name ? "true" : "false"}
                                 />
-                                {errors.name && <span className="text-red-500 text-xs ml-1">Name is required</span>}
+                                {errors.name && <span className="text-red-500 text-xs ml-1" role="alert">Name is required</span>}
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm text-gray-400 ml-1">Email Address *</label>
+                                <label htmlFor="email" className="text-sm text-gray-400 ml-1">Email Address *</label>
                                 <input
+                                    id="email"
                                     {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-vapor-cyan transition-colors"
                                     placeholder="john@company.com"
+                                    aria-invalid={errors.email ? "true" : "false"}
                                 />
-                                {errors.email && <span className="text-red-500 text-xs ml-1">Valid email is required</span>}
+                                {errors.email && <span className="text-red-500 text-xs ml-1" role="alert">Valid email is required</span>}
                             </div>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div className="space-y-2">
-                                <label className="text-sm text-gray-400 ml-1">Company Name</label>
+                                <label htmlFor="company" className="text-sm text-gray-400 ml-1">Company Name</label>
                                 <input
+                                    id="company"
                                     {...register("company")}
                                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-vapor-cyan transition-colors"
                                     placeholder="Vapourbit Inc."
                                 />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm text-gray-400 ml-1">Budget</label>
+                                <label htmlFor="budget" className="text-sm text-gray-400 ml-1">Budget</label>
                                 <select
+                                    id="budget"
                                     {...register("budget")}
                                     className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-vapor-cyan transition-colors appearance-none"
                                 >
@@ -150,14 +156,16 @@ export default function Contact() {
                         </div>
 
                         <div className="mb-8 space-y-2">
-                            <label className="text-sm text-gray-400 ml-1">Project Details *</label>
+                            <label htmlFor="message" className="text-sm text-gray-400 ml-1">Project Details *</label>
                             <textarea
+                                id="message"
                                 {...register("message", { required: true })}
                                 rows={4}
                                 className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-vapor-cyan transition-colors resize-none"
                                 placeholder="Tell us about your project..."
+                                aria-invalid={errors.message ? "true" : "false"}
                             />
-                            {errors.message && <span className="text-red-500 text-xs ml-1">Message is required</span>}
+                            {errors.message && <span className="text-red-500 text-xs ml-1" role="alert">Message is required</span>}
                         </div>
 
                         <button
