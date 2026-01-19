@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Vapourbit | Premium Web Development & Software Solutions | Next.js Experts",
     template: "%s | Vapourbit"
   },
-  description: "Vapourbit delivers cutting-edge web development, custom software solutions, and stunning UI/UX design. Transform your digital presence with our expert Next.js, React, and full-stack development services. Trusted by 50+ startups.",
+  description: "Transform your digital presence with Vapourbit. Premium web development, custom software solutions, and stunning UI/UX design. Trusted by 50+ startups.",
   keywords: ["web development", "software development", "Next.js development", "React development", "UI/UX design", "custom software", "full-stack development", "web applications", "mobile apps", "API integration", "Vapourbit"],
   authors: [{ name: "Vapourbit", url: "https://www.vapourbit.com" }],
   creator: "Vapourbit",
