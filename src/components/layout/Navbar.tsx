@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import GooeyNav from "@/components/ui/GooeyNav";
 
 const navLinks = [
     { name: "WORK", href: "#work" },
@@ -119,17 +120,18 @@ export default function Navbar() {
                         "hidden md:flex items-center transition-all duration-400 ease-in-out",
                         isScrolled ? "gap-6" : "gap-8"
                     )}>
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                onClick={(e) => handleLinkClick(e, link.href)}
-                                className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors group"
-                            >
-                                {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-vapor-cyan transition-all duration-300 group-hover:w-full" />
-                            </Link>
-                        ))}
+                        <GooeyNav
+                            items={[
+                                { label: "WORK", href: "#work" },
+                                { label: "SERVICES", href: "#services" },
+                                { label: "PROCESS", href: "#process" },
+                                { label: "TECH", href: "#tech" },
+                                { label: "CONTACT", href: "#contact" }
+                            ]}
+                            onItemClick={(e, href) => handleLinkClick(e, href)}
+                            particleCount={15}
+                            colors={[1, 2, 3, 1, 2, 3, 1, 4]} // Cyan, Purple, Blue, Pink mix
+                        />
                     </div>
 
                     {/* CTA Button */}
