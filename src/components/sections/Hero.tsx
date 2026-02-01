@@ -7,7 +7,7 @@ import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const LiquidBackground = dynamic(() => import("./2d/LiquidBackground"), { ssr: false });
+const LiquidEther = dynamic(() => import("@/components/ui/LiquidEther"), { ssr: false });
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +29,16 @@ export default function Hero() {
         >
             {/* 1. Interactive Liquid Fluid Background */}
             <div className="absolute inset-0 z-0">
-                <LiquidBackground />
+                <LiquidEther
+                    colors={['#00d4ff', '#8b5cf6', '#1a73e8']}
+                    mouseForce={25}
+                    cursorSize={120}
+                    isViscous={false}
+                    resolution={0.5}
+                    autoDemo={true}
+                    autoSpeed={0.6}
+                    autoIntensity={2.5}
+                />
             </div>
 
             {/* 2. Grain/Noise Overlay (Preserved for texture) */}
