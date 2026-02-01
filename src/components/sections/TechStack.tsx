@@ -58,7 +58,7 @@ const technologies = [
 
 export default function TechStack() {
     return (
-        <section id="tech-stack" className="relative py-32 bg-[#0a0a0f] overflow-hidden">
+        <section id="tech" className="relative py-32 bg-[#0a0a0f] overflow-hidden">
             {/* Background Noise */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
                 <div className="absolute inset-0 bg-[url('/noise.png')]" />

@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import InfiniteMenu from "@/components/ui/InfiniteMenu";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Github, ExternalLink, Code2, Layers, Zap, ShoppingBag, MapPin } from "lucide-react";
 import Image from "next/image";
@@ -63,70 +64,64 @@ const projects = [
 const filters = ["All", "Web Apps", "AI Tools", "Brand Site", "Platforms"];
 
 export default function Portfolio() {
-    const [activeFilter, setActiveFilter] = useState("All");
+    const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef(null);
 
-    const filteredProjects = projects.filter((project) => {
-        if (activeFilter === "All") return true;
-        if (activeFilter === "Web Apps") return ["WEB APP", "DIRECTORY"].includes(project.category);
-        if (activeFilter === "AI Tools") return ["AI TOOL"].includes(project.category);
-        if (activeFilter === "Brand Site") return project.category === "BRAND SITE";
-        if (activeFilter === "Platforms") return ["PLATFORM"].includes(project.category);
-        return true;
-    });
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Map existing projects to InfiniteMenu format
+    const vapourbitProjects = projects.map(p => ({
+        image: p.image,
+        link: p.link,
+        title: p.title,
+        description: p.description
+    }));
 
     return (
-        <section ref={containerRef} id="work" className="py-32 px-6 bg-vapor-dark relative z-10 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
+        <section ref={containerRef} id="work" className="min-h-screen bg-black py-20 relative z-10 overflow-hidden">
+            <div className="container mx-auto px-4 h-full flex flex-col">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                    <div>
-                        <div className="inline-block px-4 py-1.5 rounded-full border border-vapor-cyan/30 bg-vapor-cyan/10 text-vapor-cyan text-sm font-semibold tracking-wider mb-6">
-                            OUR MASTERPIECES
+                <div className="text-center mb-12">
+                    <span className="inline-block px-4 py-2 bg-vapor-cyan/10 border border-vapor-cyan/30 rounded-full text-vapor-cyan text-sm font-medium mb-4">
+                        OUR MASTERPIECES
+                    </span>
+                    <h2 className="text-5xl md:text-7xl font-black text-white mb-4 font-orbitron">
+                        Selected <span className="text-vapor-cyan">Works</span>
+                    </h2>
+                </div>
+
+                {/* Content Area */}
+                <div className="flex-grow w-full h-[600px] md:h-[800px] relative">
+                    {!isMobile ? (
+                        <InfiniteMenu
+                            items={vapourbitProjects}
+                            scale={1.0}
+                        />
+                    ) : (
+                        <div className="grid grid-cols-1 gap-8">
+                            {projects.map((project, index) => (
+                                <ProjectCard key={project.id} project={project} index={index} />
+                            ))}
                         </div>
-                        <h2 className="font-orbitron text-5xl md:text-7xl font-bold text-white leading-tight">
-                            Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-vapor-cyan to-vapor-blue">Works</span>
-                        </h2>
-                    </div>
-
-                    {/* Filter Tabs */}
-                    <div className="flex flex-wrap gap-2">
-                        {filters.map((filter) => (
-                            <button
-                                key={filter}
-                                onClick={() => setActiveFilter(filter)}
-                                className={cn(
-                                    "px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 border",
-                                    activeFilter === filter
-                                        ? "bg-white text-black border-white"
-                                        : "bg-transparent text-gray-400 border-white/10 hover:border-white/30 hover:text-white"
-                                )}
-                            >
-                                {filter}
-                            </button>
-                        ))}
-                    </div>
+                    )}
                 </div>
 
-                {/* Projects Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 gap-10"
-                >
-                    <AnimatePresence>
-                        {filteredProjects.map((project, index) => (
-                            <ProjectCard key={project.id} project={project} index={index} />
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
-
-                {/* Load More / Footer of Section */}
-                <div className="mt-20 text-center">
-                    <p className="text-gray-500 mb-6 font-mono text-sm">Showing {filteredProjects.length} of 50+ projects</p>
-                    <button className="px-8 py-4 border border-white/20 rounded-full text-white hover:bg-white hover:text-black transition-all duration-300 font-bold tracking-wide">
-                        VIEW ALL ARCHIVES
-                    </button>
-                </div>
+                {/* Desktop Hint */}
+                {!isMobile && (
+                    <div className="text-center mt-8">
+                        <p className="text-gray-400 text-sm flex items-center justify-center gap-2">
+                            <span className="inline-block w-2 h-2 bg-vapor-cyan rounded-full animate-pulse"></span>
+                            Drag to rotate • Click to explore
+                        </p>
+                    </div>
+                )}
             </div>
         </section>
     );

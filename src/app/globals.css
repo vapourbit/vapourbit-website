@@ -19,8 +19,6 @@ body {
   background: var(--background);
   font-family: var(--font-inter);
   overflow-x: hidden;
-  cursor: none;
-  /* For custom cursor */
 }
 
 /* Lenis Smooth Scroll */
