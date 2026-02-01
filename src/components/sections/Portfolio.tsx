@@ -161,6 +161,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
                         src={project.image}
                         alt={project.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
                     />
 

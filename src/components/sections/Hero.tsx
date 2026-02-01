@@ -5,6 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const LiquidBackground = dynamic(() => import("./2d/LiquidBackground"), { ssr: false });
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,15 +27,13 @@ export default function Hero() {
             ref={containerRef}
             className="relative h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#000000]"
         >
-            {/* 1. Background Mesh Gradient Glow */}
-            <motion.div style={{ y: y1 }} className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] bg-[#ff006e]/20 rounded-full blur-[120px] mix-blend-screen animate-pulse duration-[8s]" />
-                <div className="absolute top-[40%] -right-[10%] w-[60vw] h-[60vw] bg-[#8b5cf6]/20 rounded-full blur-[120px] mix-blend-screen animate-pulse duration-[12s]" />
-                <div className="absolute -bottom-[20%] left-[20%] w-[50vw] h-[50vw] bg-[#3b82f6]/20 rounded-full blur-[100px] mix-blend-screen animate-pulse duration-[10s]" />
-            </motion.div>
+            {/* 1. Interactive Liquid Fluid Background */}
+            <div className="absolute inset-0 z-0">
+                <LiquidBackground />
+            </div>
 
-            {/* 2. Grain/Noise Overlay */}
-            <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
+            {/* 2. Grain/Noise Overlay (Preserved for texture) */}
+            <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
             />
 

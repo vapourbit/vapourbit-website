@@ -91,6 +91,7 @@ export default function DiscoverPage() {
                                         src={src}
                                         alt={`Kocoa Project Screenshot ${index}`}
                                         fill
+                                        sizes="(max-width: 768px) 400px, 500px"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
@@ -151,6 +152,7 @@ export default function DiscoverPage() {
                                         src={src}
                                         alt={`Student App Screenshot ${index}`}
                                         fill
+                                        sizes="(max-width: 768px) 220px, 320px"
                                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>

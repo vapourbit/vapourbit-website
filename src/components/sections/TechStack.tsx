@@ -71,20 +71,10 @@ export default function TechStack() {
             </div>
 
             {/* Infinite Scroll Carousel */}
-            <div className="flex w-full overflow-hidden mask-gradient">
-                <div className="flex w-full whitespace-nowrap hover:[animation-play-state:paused]">
-                    {[...Array(2)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ x: 0 }}
-                            animate={{ x: "-100%" }}
-                            transition={{
-                                duration: 60,
-                                ease: "linear",
-                                repeat: Infinity
-                            }}
-                            className="flex items-start shrink-0"
-                        >
+            <div className="w-full overflow-hidden mask-gradient">
+                <div className="flex w-max animate-scroll md:hover:[animation-play-state:paused]">
+                    {[...Array(3)].map((_, i) => (
+                        <div key={i} className="flex items-start shrink-0">
                             {technologies.map((tech, index) => {
                                 const Icon = tech.icon;
                                 return (
@@ -92,14 +82,14 @@ export default function TechStack() {
                                         key={index}
                                         className="group relative flex flex-col items-center justify-start mx-8 md:mx-12 min-w-[80px] cursor-pointer"
                                     >
-                                        <div className="relative p-2 transition-transform duration-300 transform group-hover:scale-125">
+                                        <div className="p-2 transition-transform duration-300 transform group-hover:scale-125">
                                             <Icon
                                                 size={48}
                                                 className="text-gray-600 transition-colors duration-300 group-hover:text-white"
                                             />
                                         </div>
 
-                                        {/* Name Label - Appears BELOW icon on hover (matches screenshot) */}
+                                        {/* Name Label */}
                                         <span className={cn(
                                             "absolute top-full mt-4 text-sm font-bold tracking-wider text-vapor-cyan opacity-0 transform translate-y-2 transition-all duration-300",
                                             "group-hover:opacity-100 group-hover:translate-y-0"
@@ -109,7 +99,7 @@ export default function TechStack() {
                                     </div>
                                 );
                             })}
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>
