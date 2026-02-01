@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Orbitron } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/ui/CustomCursor";
+
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
@@ -125,7 +125,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${orbitron.variable} bg-vapor-dark overflow-x-hidden`}>
-        <CustomCursor />
+
         {children}
       </body>
     </html>

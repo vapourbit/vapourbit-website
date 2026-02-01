@@ -7,7 +7,10 @@ import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import dynamic from "next/dynamic";
 
-const LiquidEther = dynamic(() => import("@/components/ui/LiquidEther"), { ssr: false });
+const LiquidEther = dynamic(() => import("@/components/ui/LiquidEther"), {
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-gradient-to-br from-[#00d4ff]/20 via-[#8b5cf6]/20 to-black" />
+});
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -32,12 +35,21 @@ export default function Hero() {
                 <LiquidEther
                     colors={['#00d4ff', '#8b5cf6', '#1a73e8']}
                     mouseForce={25}
-                    cursorSize={120}
+                    cursorSize={85}
                     isViscous={false}
-                    resolution={0.5}
+                    viscous={30}
+                    iterationsViscous={16}
+                    iterationsPoisson={16}
+                    dt={0.014}
+                    BFECC={true}
+                    resolution={0.35}
+                    isBounce={false}
                     autoDemo={true}
                     autoSpeed={0.6}
-                    autoIntensity={2.5}
+                    autoIntensity={2.2}
+                    takeoverDuration={0.25}
+                    autoResumeDelay={4000}
+                    autoRampDuration={0.6}
                 />
             </div>
 
