@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
 import dynamic from "next/dynamic";
-import GlitchText from "@/components/ui/GlitchText";
 
 const LiquidEther = dynamic(() => import("@/components/ui/LiquidEther"), {
     ssr: false,
@@ -25,26 +24,6 @@ export default function Hero() {
     const title = "VAPOURBIT";
     const tagline = "INNOVATIVE SOFTWARE SOLUTIONS & WEB DEVELOPMENT";
 
-    const [isMobile, setIsMobile] = useState(false);
-    const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        const checkMotion = () => setPrefersReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-
-        checkMobile();
-        checkMotion();
-
-        window.addEventListener('resize', checkMobile);
-        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        motionQuery.addEventListener('change', (e) => setPrefersReducedMotion(e.matches));
-
-        return () => {
-            window.removeEventListener('resize', checkMobile);
-            motionQuery.removeEventListener('change', (e) => setPrefersReducedMotion(e.matches));
-        };
-    }, []);
-
     return (
         <section
             id="home"
@@ -53,27 +32,25 @@ export default function Hero() {
         >
             {/* 1. Interactive Liquid Fluid Background */}
             <div className="absolute inset-0 z-0">
-                {!isMobile && (
-                    <LiquidEther
-                        colors={['#00d4ff', '#8b5cf6', '#1a73e8']}
-                        mouseForce={25}
-                        cursorSize={85}
-                        isViscous={false}
-                        viscous={30}
-                        iterationsViscous={16}
-                        iterationsPoisson={16}
-                        dt={0.014}
-                        BFECC={true}
-                        resolution={0.35}
-                        isBounce={false}
-                        autoDemo={true}
-                        autoSpeed={0.6}
-                        autoIntensity={2.2}
-                        takeoverDuration={0.25}
-                        autoResumeDelay={4000}
-                        autoRampDuration={0.6}
-                    />
-                )}
+                <LiquidEther
+                    colors={['#00d4ff', '#8b5cf6', '#1a73e8']}
+                    mouseForce={25}
+                    cursorSize={85}
+                    isViscous={false}
+                    viscous={30}
+                    iterationsViscous={16}
+                    iterationsPoisson={16}
+                    dt={0.014}
+                    BFECC={true}
+                    resolution={0.35}
+                    isBounce={false}
+                    autoDemo={true}
+                    autoSpeed={0.6}
+                    autoIntensity={2.2}
+                    takeoverDuration={0.25}
+                    autoResumeDelay={4000}
+                    autoRampDuration={0.6}
+                />
             </div>
 
             {/* 2. Grain/Noise Overlay (Preserved for texture) */}
@@ -85,22 +62,19 @@ export default function Hero() {
             <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto flex flex-col items-center">
 
                 {/* Massive Typography */}
-                <div className="mb-6">
-                    {prefersReducedMotion ? (
-                        <h1 className="font-orbitron font-bold text-5xl md:text-8xl lg:text-[140px] leading-[0.9] tracking-tighter text-white">
-                            {title}
-                        </h1>
-                    ) : (
-                        <GlitchText
-                            speed={isMobile ? 1.2 : 0.8}
-                            enableShadows={!isMobile}
-                            enableOnHover={false}
-                            className="font-orbitron font-bold text-5xl md:text-8xl lg:text-[140px] leading-[0.9] tracking-tighter uppercase"
+                <h1 className="font-orbitron font-bold text-5xl md:text-8xl lg:text-[140px] leading-[0.9] tracking-tighter text-white mb-6">
+                    {title.split("").map((char, i) => (
+                        <motion.span
+                            key={i}
+                            initial={{ opacity: 0, y: 100, rotateX: 90 }}
+                            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.05 }}
+                            className="inline-block"
                         >
-                            {title}
-                        </GlitchText>
-                    )}
-                </div>
+                            {char}
+                        </motion.span>
+                    ))}
+                </h1>
 
                 {/* Tagline */}
                 <motion.div
