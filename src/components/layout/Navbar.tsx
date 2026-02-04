@@ -9,22 +9,64 @@ import GooeyNav from "@/components/ui/GooeyNav";
 const navLinks = [
     { name: "WORK", href: "#work" },
     { name: "SERVICES", href: "#services" },
-    { name: "PROCESS", href: "#process" },
     { name: "TECH", href: "#tech" },
+    { name: "PROCESS", href: "#process" },
     { name: "CONTACT", href: "#contact" },
 ];
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(-1);
 
-    const navLinks = [
-        { name: "WORK", href: "#work" },
-        { name: "SERVICES", href: "#services" },
-        { name: "PROCESS", href: "#process" },
-        { name: "TECH", href: "#tech" },
-        { name: "CONTACT", href: "#contact" },
-    ];
+    const sectionIds = ["work", "services", "tech", "process", "contact"];
+
+    useEffect(() => {
+        // Intersection Observer for Active Section
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -60% 0px", // Trigger when section is near center/top
+            threshold: 0
+        };
+
+        const callback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = sectionIds.indexOf(entry.target.id);
+                    if (index !== -1) {
+                        setActiveIndex(index);
+                    }
+                }
+            });
+
+            // Special case for Hero/Top
+            if (window.scrollY < 100) {
+                setActiveIndex(-1); // Deselect if at very top
+            }
+        };
+
+        const observer = new IntersectionObserver(callback, observerOptions);
+
+        // Observe sections
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        // Also observe Hero if it has an ID, or handle via scroll listener
+        // Let's rely on scroll listener for "top of page" fallback
+        const handleScrollSpy = () => {
+            if (window.scrollY < 100) {
+                setActiveIndex(-1);
+            }
+        };
+        window.addEventListener('scroll', handleScrollSpy);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScrollSpy);
+        };
+    }, []);
 
     const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         e.preventDefault();
@@ -124,10 +166,11 @@ export default function Navbar() {
                             items={[
                                 { label: "WORK", href: "#work" },
                                 { label: "SERVICES", href: "#services" },
-                                { label: "PROCESS", href: "#process" },
                                 { label: "TECH", href: "#tech" },
+                                { label: "PROCESS", href: "#process" },
                                 { label: "CONTACT", href: "#contact" }
                             ]}
+                            activeIndex={activeIndex}
                             onItemClick={(e, href) => handleLinkClick(e, href)}
                             particleCount={15}
                             colors={[1, 2, 3, 1, 2, 3, 1, 4]} // Cyan, Purple, Blue, Pink mix

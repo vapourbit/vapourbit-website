@@ -54,7 +54,7 @@ interface LiquidEtherWebGL {
 
 const defaultColors = ['#5227FF', '#FF9FFC', '#B19EEF'];
 
-export default function LiquidEther({
+export function LiquidEther({
     mouseForce = 20,
     cursorSize = 100,
     isViscous = false,
@@ -1252,3 +1252,5 @@ export default function LiquidEther({
         />
     );
 }
+
+export default React.memo(LiquidEther);

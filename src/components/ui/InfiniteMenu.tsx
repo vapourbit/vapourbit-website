@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect, MutableRefObject } from 'react';
+import React, { FC, useRef, useState, useEffect, MutableRefObject } from 'react';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
 
 const discVertShaderSource = `#version 300 es
@@ -1244,4 +1244,4 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [], scale = 1.0 }) => {
     );
 };
 
-export default InfiniteMenu;
+export default React.memo(InfiniteMenu);

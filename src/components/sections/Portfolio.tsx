@@ -59,6 +59,26 @@ const projects = [
         link: "https://aiwithyou.vercel.app",
         featured: true, // Making this featured for the 3rd row layout
     },
+    {
+        id: 6,
+        title: "TAKA KITCHEN",
+        category: "BRAND SITE",
+        description: "Authentic Japanese soul food experience in Belize City, featuring a dark, moody aesthetic and seamless menu browsing.",
+        tech: ["Vite", "React", "Tailwind"],
+        image: "https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2664&auto=format&fit=crop", // Reliable Dark Sushi (Sushil Nassar)
+        link: "https://takakitchen.netlify.app/",
+        featured: false,
+    },
+    {
+        id: 7,
+        title: "OM INDIAN",
+        category: "BRAND SITE",
+        description: "Premium digital presence for an authentic Indian restaurant, highlighting rich flavors and cultural heritage with a vibrant interface.",
+        tech: ["Next.js", "React", "Tailwind"],
+        image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=2664&auto=format&fit=crop", // Reliable Butter Chicken (Raman)
+        link: "https://omindianrestruant.netlify.app/",
+        featured: false,
+    },
 ];
 
 const filters = ["All", "Web Apps", "AI Tools", "Brand Site", "Platforms"];

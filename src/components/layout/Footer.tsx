@@ -9,7 +9,7 @@ export default function Footer() {
                 {/* Column 1: Brand */}
                 <div className="flex flex-col gap-6">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gradient-to-tr from-vapor-blue to-vapor-cyan rounded-md" />
+                        <img src="/logo.png" alt="Vapourbit" className="w-8 h-8 object-contain mix-blend-screen" />
                         <span className="font-orbitron font-bold text-xl text-white">VAPOURBIT</span>
                     </div>
                     <p className="text-gray-400 text-sm">

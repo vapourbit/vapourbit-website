@@ -1,107 +1,87 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import {
-    SiNextdotjs, SiReact, SiTypescript, SiJavascript, SiTailwindcss, SiHtml5, SiCss3,
-    SiFramer, SiGreensock, SiRedux, SiVuedotjs, SiSvelte,
-    SiNodedotjs, SiExpress, SiPython, SiFastify, SiGraphql,
-    SiMongodb, SiPostgresql, SiMysql, SiPrisma, SiSupabase, SiFirebase, SiRedis,
-    SiVercel, SiAmazonwebservices, SiGooglecloud, SiDocker, SiKubernetes, SiNetlify,
-    SiOpenai, SiGithub, SiGit, SiFigma, SiStripe, SiPostman, SiJest
-} from "react-icons/si";
-import { FaDatabase } from "react-icons/fa";
-import { VscAzure, VscVscode } from "react-icons/vsc";
-import { cn } from "@/lib/utils";
-
-const technologies = [
-    { name: "Next.js", icon: SiNextdotjs },
-    { name: "React", icon: SiReact },
-    { name: "TypeScript", icon: SiTypescript },
-    { name: "JavaScript", icon: SiJavascript },
-    { name: "Tailwind", icon: SiTailwindcss },
-    { name: "HTML5", icon: SiHtml5 },
-    { name: "CSS3", icon: SiCss3 },
-    { name: "Framer", icon: SiFramer },
-    { name: "GSAP", icon: SiGreensock },
-    { name: "Redux", icon: SiRedux },
-    { name: "Vue.js", icon: SiVuedotjs },
-    { name: "Svelte", icon: SiSvelte },
-    { name: "Node.js", icon: SiNodedotjs },
-    { name: "Express", icon: SiExpress },
-    { name: "Python", icon: SiPython },
-    { name: "Fastify", icon: SiFastify },
-    { name: "GraphQL", icon: SiGraphql },
-    { name: "REST API", icon: FaDatabase },
-    { name: "MongoDB", icon: SiMongodb },
-    { name: "PostgreSQL", icon: SiPostgresql },
-    { name: "MySQL", icon: SiMysql },
-    { name: "Prisma", icon: SiPrisma },
-    { name: "Supabase", icon: SiSupabase },
-    { name: "Firebase", icon: SiFirebase },
-    { name: "Redis", icon: SiRedis },
-    { name: "Vercel", icon: SiVercel },
-    { name: "AWS", icon: SiAmazonwebservices },
-    { name: "Google Cloud", icon: SiGooglecloud },
-    { name: "Azure", icon: VscAzure },
-    { name: "Docker", icon: SiDocker },
-    { name: "Kubernetes", icon: SiKubernetes },
-    { name: "Netlify", icon: SiNetlify },
-    { name: "OpenAI", icon: SiOpenai },
-    { name: "GitHub", icon: SiGithub },
-    { name: "Git", icon: SiGit },
-    { name: "VS Code", icon: VscVscode },
-    { name: "Figma", icon: SiFigma },
-    { name: "Stripe", icon: SiStripe },
-    { name: "Postman", icon: SiPostman },
-    { name: "Jest", icon: SiJest },
-];
+import React, { useState, useEffect } from "react";
+import CurvedLoop from "@/components/ui/CurvedLoop";
+import GridBackground from "@/components/ui/GridBackground";
 
 export default function TechStack() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
-        <section id="tech" className="relative py-32 bg-[#0a0a0f] overflow-hidden">
-            {/* Background Noise */}
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
-                <div className="absolute inset-0 bg-[url('/noise.png')]" />
-            </div>
+        <section id="tech" className="relative min-h-screen bg-[#0a0a0f] py-20 overflow-hidden flex flex-col justify-center">
+            {/* Background Grid & Noise */}
+            <div className="absolute inset-0 pointer-events-none">
+                {/* Noise texture with mix-blend-overlay for texture without hiding grid */}
+                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-20 mix-blend-overlay z-20" />
 
-            <div className="relative z-10 container mx-auto px-6 mb-24 text-center">
-                <h2 className="font-orbitron font-bold text-4xl md:text-5xl tracking-widest text-white uppercase">
-                    Powered by Modern Technology
-                </h2>
-            </div>
-
-            {/* Infinite Scroll Carousel */}
-            <div className="w-full overflow-hidden mask-gradient">
-                <div className="flex w-max animate-scroll md:hover:[animation-play-state:paused]">
-                    {[...Array(3)].map((_, i) => (
-                        <div key={i} className="flex items-start shrink-0">
-                            {technologies.map((tech, index) => {
-                                const Icon = tech.icon;
-                                return (
-                                    <div
-                                        key={index}
-                                        className="group relative flex flex-col items-center justify-start mx-8 md:mx-12 min-w-[80px] cursor-pointer"
-                                    >
-                                        <div className="p-2 transition-transform duration-300 transform group-hover:scale-125">
-                                            <Icon
-                                                size={48}
-                                                className="text-gray-600 transition-colors duration-300 group-hover:text-white"
-                                            />
-                                        </div>
-
-                                        {/* Name Label */}
-                                        <span className={cn(
-                                            "absolute top-full mt-4 text-sm font-bold tracking-wider text-vapor-cyan opacity-0 transform translate-y-2 transition-all duration-300",
-                                            "group-hover:opacity-100 group-hover:translate-y-0"
-                                        )}>
-                                            {tech.name}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    ))}
+                {/* Grid Background - fully visible now */}
+                <div className="absolute inset-0 z-0 opacity-60">
+                    <GridBackground />
                 </div>
+            </div>
+
+            {/* Section Header */}
+            <div className="container mx-auto px-4 mb-16 relative z-10">
+                <div className="text-center">
+                    <span className="inline-block px-4 py-2 bg-vapor-cyan/10 border border-vapor-cyan/30 rounded-full text-vapor-cyan text-sm font-medium mb-4 tracking-wider">
+                        OUR ARSENAL
+                    </span>
+                    <h2 className="font-orbitron font-black text-5xl md:text-7xl text-white mb-4">
+                        TECH <span className="text-vapor-cyan">STACK</span>
+                    </h2>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto font-light">
+                        Cutting-edge technologies powering exceptional digital experiences.
+                    </p>
+                </div>
+            </div>
+
+            {/* Curved Loop Marquees */}
+            <div className="space-y-4 md:space-y-12 relative z-10 w-full">
+                {/* Loop 1: Frontend (Cyan) */}
+                <CurvedLoop
+                    marqueeText="React ✦ Next.js ✦ TypeScript ✦ Tailwind CSS ✦ Three.js ✦ WebGL ✦ Framer Motion ✦ GSAP ✦ "
+                    speed={isMobile ? 1.5 : 2}
+                    curveAmount={isMobile ? 100 : 250}
+                    direction="right"
+                    interactive={!isMobile}
+                    className="text-vapor-cyan font-bold drop-shadow-[0_0_10px_rgba(0,212,255,0.5)] text-[3rem] md:text-[6rem]"
+                />
+
+                {/* Loop 2: Backend (Purple) */}
+                <CurvedLoop
+                    marqueeText="Node.js ✦ Python ✦ Express ✦ FastAPI ✦ PostgreSQL ✦ MongoDB ✦ Redis ✦ GraphQL ✦ "
+                    speed={isMobile ? 1.5 : 2.5}
+                    curveAmount={isMobile ? -100 : -250}
+                    direction="left"
+                    interactive={!isMobile}
+                    className="text-vapor-purple font-bold drop-shadow-[0_0_10px_rgba(139,92,246,0.5)] text-[3rem] md:text-[6rem]"
+                />
+
+                {/* Loop 3: Tools (Blue) - Desktop Only for now to avoid clutter, or simplified for mobile */}
+                {!isMobile && (
+                    <CurvedLoop
+                        marqueeText="Git ✦ Docker ✦ AWS ✦ Vercel ✦ Figma ✦ WebStorm ✦ Postman ✦ GitHub Actions ✦ CI/CD ✦ "
+                        speed={2}
+                        curveAmount={250}
+                        direction="right"
+                        interactive={true}
+                        className="text-blue-400 font-bold drop-shadow-[0_0_10px_rgba(59,130,246,0.5)] text-[6rem]"
+                    />
+                )}
+            </div>
+
+            {/* Accessibility Alternative */}
+            <div className="sr-only">
+                <h3>Our Technology Stack</h3>
+                <p>Frontend: React, Next.js, TypeScript, Tailwind CSS, Three.js, WebGL, Framer Motion, GSAP</p>
+                <p>Backend: Node.js, Python, Express, FastAPI, PostgreSQL, MongoDB, Redis, GraphQL</p>
+                <p>Tools: Git, Docker, AWS, Vercel, Figma, WebStorm, Postman, GitHub Actions, CI/CD</p>
             </div>
         </section>
     );
